@@ -1,0 +1,23 @@
+{
+  "name": "jolly-carousel",
+  "version": "1.0.0",
+  "description": "Modern responsive carousel with zooming",
+  "main": "src/jolly.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gerrproger/jolly.git"
+  },
+  "keywords": [
+    "modern",
+    "responsive",
+    "carousel",
+    "slider",
+    "zoom",
+    "js"
+  ],
+  "author": "Gerrproger <gerrproger@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gerrproger/jolly/issues"
+  }
+}
