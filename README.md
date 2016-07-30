@@ -8,6 +8,10 @@ _Modern responsive carousel with zooming_
 
 [http://gerrproger.github.io/Jolly](http://gerrproger.github.io/Jolly)
 
+### Browser support
+
+Works on IE10+ in addition to other modern browsers such as Chrome, Firefox, and Safari.
+
 ### Docs
 
 **Docs in progress..**

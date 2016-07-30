@@ -1,8 +1,8 @@
 /*!
  * Jolly - modern responsive carousel with zooming
- * @version  v1.0.0
+ * @version  v1.1.0
  * @author   Gerrproger
- * Website:  http://gerrproger.github.io/jolly
+ * Website:  http://gerrproger.github.io/Jolly
  * Repo:     http://github.com/gerrproger/jolly
  * Issues:   http://github.com/gerrproger/jolly/issues
  */
@@ -23,6 +23,7 @@
 
     var defaults = {
         offset: 300,
+        height: false,
         reflected: false,
         reversed: false,
         zooming: true,
@@ -162,30 +163,34 @@
         var loaded = 0;
         var direction = null;
         var zoom = null;
+        var zoomState = false;
         var imgsLength = imgs.length;
         var pin = settings.reflected ? 'right' : 'left';
         var moveTime = null;
         var tree = {
-            offset: 100,
+            loaded: false,
+            zoomActive: false,
+            offset: 0,
             height: 0,
             width: 0,
-            loaded: false,
             list: [],
             controls: {},
             active: settings.reversed ? imgsLength - 1 : imgsLength
         };
 
         tree.wrap = _createElement('div', {class: defaults.selectors.wrapper}, element);
+        if (settings.height !== false) {
+            tree.wrap.style.height = settings.height + 'px';
+        }
+
         tree.scroller = _createElement('ul', {class: defaults.selectors.scroller}, tree.wrap);
         tree.height = tree.scroller.offsetHeight;
+
         if (settings.reflected) {
             _toggleClass(tree.wrap, defaults.selectors.wrapperReflected, true);
         }
 
         tree.controls.block = _createElement('div', {class: defaults.selectors.controls}, tree.wrap);
-        if (settings.zooming) {
-            _toggleClass(tree.controls.block, defaults.selectors.controlsZoom, true);
-        }
 
         tree.controls.prev = _createElement('button', {class: defaults.selectors.controlPrev}, tree.controls.block);
         tree.controls.next = _createElement('button', {class: defaults.selectors.controlNext}, tree.controls.block);
@@ -214,9 +219,9 @@
         _toggleListener(tree.scroller, 'transitionend webkitTransitionEnd', _scrollerTransition, true);
         _toggleListener(tree.controls.prev, 'click', settings.reversed ? _nextClick : _prevClick, true);
         _toggleListener(tree.controls.next, 'click', settings.reversed ? _prevClick : _nextClick, true);
+
         if (settings.zooming) {
-            _toggleListener(tree.controls.zoomer, 'mouseenter', _zoomerMouseenter, true);
-            _toggleListener(tree.controls.zoomer, 'mouseleave', _zoomerMouseleave, true);
+            _toggleZoom();
         }
 
 
@@ -232,7 +237,7 @@
 
                 _appendChild(tree.scroller, el.element);
 
-                tree.offset = tree.offset + el.width;
+                tree.offset += el.width;
                 tree.scroller.style[pin] = tree.offset + 'px';
 
                 tree.active--;
@@ -244,7 +249,7 @@
 
                 _prependChild(tree.scroller, el.element, tree.list[0].element);
 
-                tree.offset = tree.offset - el.width;
+                tree.offset -= el.width;
                 tree.scroller.style[pin] = tree.offset + 'px';
 
                 tree.active++;
@@ -282,10 +287,10 @@
             if (block.width + settings.zoomDif > block.image.naturalWidth) {
                 return;
             }
+            tree.zoomActive = true;
 
             _toggleClass(block.image, defaults.selectors.imageTransition, true);
 
-            block.element.style.width = block.width + 'px';
             block.image.style.height = block.image.naturalHeight + 'px';
 
             zoom = {
@@ -304,16 +309,20 @@
             _toggleClass(block.image, defaults.selectors.imageTransition, true);
             _toggleListener(block.image, 'transitionend webkitTransitionEnd', _transitionListener, true);
 
-            block.image.style.height = null;
-            block.image.style.left = null;
-            block.image.style.top = null;
+            block.image.style.height = '';
+            block.image.style.left = '';
+            block.image.style.top = '';
             zoom = null;
 
             _toggleListener(tree.controls.zoomer, 'mousemove', _zoom);
 
+            tree.zoomActive = false;
+            _toggleZoom();
+
             function _transitionListener() {
                 _toggleClass(block.image, defaults.selectors.imageTransition);
                 _toggleListener(block.image, 'transitionend webkitTransitionEnd', _zoom);
+                _toggleListener(block.image, 'transitionend webkitTransitionEnd', _transitionListener);
             }
         }
 
@@ -370,7 +379,8 @@
 
         function _setWidth() {
             for (var i = 0; i < imgsLength; i++) {
-                var width = tree.list[i].element.offsetWidth;
+                var width = tree.list[i].image.offsetWidth;
+                tree.list[i].element.style.width = tree.list[i + imgsLength].element.style.width = tree.list[i + imgsLength * 2].element.style.width = width + 'px';
                 tree.list[i].width = tree.list[i + imgsLength].width = tree.list[i + imgsLength * 2].width = width;
                 tree.width += width;
             }
@@ -389,12 +399,57 @@
             delete parent.jolly;
         }
 
+        function _toggleZoom() {
+            var toggle = settings.zooming;
+            if ((toggle !== zoomState) && (toggle || !tree.zoomActive)) {
+                _toggleClass(tree.controls.block, defaults.selectors.controlsZoom, toggle);
+                _toggleListener(tree.controls.zoomer, 'mouseenter', _zoomerMouseenter, toggle);
+                _toggleListener(tree.controls.zoomer, 'mouseleave', _zoomerMouseleave, toggle);
+                zoomState = toggle;
+            }
+        }
+
+        function _updateOffset(newValue) {
+            if (typeof newValue === 'undefined') {
+                newValue = settings.offset;
+            }
+            tree.offset += newValue - settings.offset;
+            tree.scroller.style[pin] = tree.offset + 'px';
+            tree.controls.block.style[pin] = newValue + 'px';
+            settings.offset = newValue;
+        }
+
+        function _updateHeight(newValue) {
+            var oldOffset = tree.list[tree.active].element.offsetLeft;
+
+            if (typeof newValue !== 'undefined') {
+                tree.wrap.style.height = (newValue === false) ? null : newValue + 'px';
+            }
+            tree.height = tree.scroller.offsetHeight;
+            tree.width = 0;
+
+            _setWidth();
+            tree.controls.block.style.width = tree.list[tree.active].width + 'px';
+            tree.offset += oldOffset - tree.list[tree.active].element.offsetLeft;
+            tree.scroller.style[pin] = tree.offset + 'px';
+        }
+
         return {
             settings: settings,
             tree: tree,
             prev: settings.reversed ? _nextClick : _prevClick,
             next: settings.reversed ? _prevClick : _nextClick,
-            destroy: _destroy
+            destroy: _destroy,
+            updateOffset: _updateOffset,
+            updateHeight: _updateHeight,
+            enableZoom: function () {
+                settings.zooming = true;
+                _toggleZoom();
+            },
+            disableZoom: function () {
+                settings.zooming = false;
+                _toggleZoom();
+            }
         };
     }
 
@@ -447,7 +502,7 @@
             var element = targets[key];
 
             if (!('jolly' in element)) {
-                var imgsAttr =  element.getAttribute(defaults.selectors.targetsData);
+                var imgsAttr = element.getAttribute(defaults.selectors.targetsData);
                 var imgs = imgsAttr ? JSON.parse(_replaceAll(imgsAttr, '\'', '"')) : null;
                 imgs = imgs ? imgs : images;
                 var setsAttr = element.getAttribute(defaults.selectors.targetsSettings);
