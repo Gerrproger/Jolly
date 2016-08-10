@@ -12,6 +12,10 @@ _Modern responsive carousel with zooming_
 
 Works on IE10+ in addition to other modern browsers such as Chrome, Firefox, and Safari.
 
+### Dependencies
+
+None!
+
 ### Docs
 
 **Docs in progress..**
