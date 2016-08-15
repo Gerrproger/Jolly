@@ -2,25 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Jolly - modern responsive carousel with zooming</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>Jolly - modern responsive infinite carousel with zooming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i|Kaushan+Script" rel="stylesheet">
+    <link rel="icon" href="jolly.jpg">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Kaushan+Script" rel="stylesheet">
+
     <link type="text/css" rel="stylesheet" href="dist/jolly.min.css">
-    <script type="text/javascript" src="dist/jolly.min.js"></script>
-
     <link type="text/css" rel="stylesheet" href="demo.css">
 
     <meta name="description"
-          content="Jolly is a modern responsive carousel plugin with no dependencies that supports image zooming, fully customizable through CSS including effects which use CSS3 transitions!">
-    <meta name="keywords" content="jolly, modern, responsive, carousel, slider, plugin, zoom, zooming, CSS3, CSS, JS">
+          content="Jolly is a modern responsive infinite carousel plugin with no dependencies that supports image zooming, fully customizable through CSS including effects which use CSS3 transitions!">
+    <meta name="keywords" content="jolly, modern, responsive, carousel, slider, plugin, zoom, zooming, infinite, CSS3, CSS, JS">
+    <meta name="author" content="Gerrproger">
     <meta property="og:title" content="Jolly - modern responsive carousel with zooming">
     <meta property="og:description"
-          content="Jolly is a modern responsive carousel plugin with no dependencies that supports image zooming, fully customizable through CSS including effects which use CSS3 transitions!">
+          content="Jolly is a modern responsive infinite carousel plugin with no dependencies that supports image zooming, fully customizable through CSS including effects which use CSS3 transitions!">
     <meta property="og:type" content="article">
-    <meta property="og:url" content="http://gerrproger.github.io/jolly/">
+    <meta property="og:url" content="http://gerrproger.github.io/Jolly/">
+    <meta property="og:image" content="jolly.jpg">
 </head>
 <body>
+
 <header class="content">
     <h1>Jolly</h1>
 </header>
@@ -32,10 +35,10 @@
 <main>
     <section>
         <div class="content center">
-            <p class="blue">Jolly is a modern responsive carousel plugin with no dependencies that supports image zooming, fully customizable through
+            <p class="blue">Jolly is a modern responsive infinite carousel plugin with no dependencies that supports image zooming, fully customizable through
                 CSS including effects which use CSS3 transitions!</p>
-            <a class="button" target="_blank" href="https://github.com/gerrproger/jolly/releases/latest">Download now</a>
-            <a class="button" target="_blank" href="https://github.com/gerrproger/jolly">View on github</a>
+            <a class="button" target="_blank" href="https://github.com/gerrproger/Jolly/releases">Download now</a>
+            <a class="button" target="_blank" href="https://github.com/gerrproger/Jolly">View on github</a>
         </div>
     </section>
     <section class="blue">
@@ -49,6 +52,7 @@
                 <li>Easy customizable effects & timings (CSS3 transitions)</li>
                 <li>Responsive with infinite looping</li>
                 <li>Simple API and easy initialization (supports [data-] attributes)</li>
+                <li>Target element remains untouched</li>
                 <li>Has browser support detection</li>
             </ul>
         </div>
@@ -64,7 +68,7 @@
             <script src="https://gist.github.com/Gerrproger/947b226ca2e25fea164c17a1e5bd2534.js"></script>
             <p>
                 <span>More examples and API can be found</span>
-                <a href="https://github.com/gerrproger/jolly" target="_blank">on Github</a>
+                <a href="https://github.com/Gerrproger/Jolly/blob/master/README.md#jolly" target="_blank">on Github</a>
             </p>
         </div>
     </section>
@@ -77,14 +81,16 @@
     </div>
 </footer>
 
+<script type="text/javascript" src="dist/jolly.min.js"></script>
+
 <script>
     var demoJolly = jolly('.demo', [
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_halloween_2015_witches_1920x1080_1446214057.png',
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_halloween_2015_cooking_up_1920x1080_1446214607.png',
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_wallpaper_11_1920x1080_1434718639.jpg',
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_geralt_with_trophies_2560x1600_1449484679.png',
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_ciri_meditating_1920x1080_1446715311.png',
-                'http://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_succubus_2560x1600_1448369835.png'
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_halloween_2015_witches_1920x1080_1446214057.png',
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_halloween_2015_cooking_up_1920x1080_1446214607.png',
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_wallpaper_11_1920x1080_1434718639.jpg',
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_geralt_with_trophies_2560x1600_1449484679.png',
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_ciri_meditating_1920x1080_1446715311.png',
+                'https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_succubus_2560x1600_1448369835.png'
             ], {
                 offset: 300
             }
@@ -94,5 +100,6 @@
         document.getElementsByClassName('not-supported')[0].style.display = 'block';
     }
 </script>
+
 </body>
 </html>
