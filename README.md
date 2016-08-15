@@ -68,6 +68,8 @@ _Zoomed image size will be equal it's original size._
 ### Initialising
 You only need to call `jolly(elements, images, settings)` function. All arguments are optional. Sometimes it is more convenient to use `data-` attributes for initialization, please see more under [data attributes](#data-attributes).  
 
+Jolly will wait until all images are loaded and then will show the carousel.  
+
 _This function returns an Array of HTMLElements (carousel target elements) or `false` if some error occurred. For example if browser is not supported._
 
 #### Elements
