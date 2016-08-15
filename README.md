@@ -163,7 +163,7 @@ Here's a list of the methods supported:
 | `next()` | — | Makes active the next image. |
 | `destroy()` | — | Destroys the carousel and the current instance. Use this instead of the direct removing Jolly from DOM. |
 | `enableZoom()` | — | Enables zooming for the active image. |
-| `disableZoom` | — | Disables zooming for the active image. |
+| `disableZoom()` | — | Disables zooming for the active image. |
 | `updateOffset(...)` | Number | Updates the `offset` [setting](#settings) and recalculates all distances. If no argument is passed the offset will be copied from the settings. |
 | `updateHeight(...)` | Boolean or Number | Installs the new height according to the `height` [setting](#settings) and recalculates distances. If no argument is passed the value will be copied from the settings. This way if the height of the container (target element) changed you just need to call `updateHeight()` to update the carousel elements dimensions. |
 
