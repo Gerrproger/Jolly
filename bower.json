@@ -4,18 +4,19 @@
     "src/jolly.js",
     "src/jolly.css"
   ],
-  "version": "1.1.0",
-  "homepage": "https://github.com/gerrproger/jolly",
+  "version": "1.1.1",
+  "homepage": "https://github.com/gerrproger/Jolly",
   "authors": [
     "Gerrproger <gerrproger@gmail.com>"
   ],
-  "description": "Modern responsive carousel with zooming",
+  "description": "Modern responsive infinite carousel with zooming",
   "keywords": [
     "modern",
     "responsive",
     "carousel",
     "slider",
-    "zoom"
+    "zoom",
+    "infinite"
   ],
   "license": "MIT",
   "ignore": [
@@ -25,5 +26,9 @@
     "test",
     "tests",
     "package.json"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gerrproger/Jolly.git"
+  }
 }

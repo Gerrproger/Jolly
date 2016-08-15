@@ -1,10 +1,10 @@
 /*!
  * Jolly - modern responsive carousel with zooming
- * @version  v1.1.0
+ * @version  v1.1.1
  * @author   Gerrproger
  * Website:  http://gerrproger.github.io/Jolly
- * Repo:     http://github.com/gerrproger/jolly
- * Issues:   http://github.com/gerrproger/jolly/issues
+ * Repo:     http://github.com/gerrproger/Jolly
+ * Issues:   http://github.com/gerrproger/Jolly/issues
  */
 ;(function (root, factory) {
     'use strict';
@@ -38,10 +38,10 @@
             targetsSettings: 'data-jolly-settings',
 
             wrapper: 'jolly',
-            wrapperReflected: 'jolly__wrapper--reflected',
             active: '--active',
 
             scroller: 'jolly__wrapper',
+            scrollerReflected: 'jolly__wrapper--reflected',
             scrollerTransition: 'jolly__wrapper--transition',
 
             controls: 'jolly__controls',
@@ -187,7 +187,7 @@
         tree.height = tree.scroller.offsetHeight;
 
         if (settings.reflected) {
-            _toggleClass(tree.wrap, defaults.selectors.wrapperReflected, true);
+            _toggleClass(tree.wrap, defaults.selectors.scrollerReflected, true);
         }
 
         tree.controls.block = _createElement('div', {class: defaults.selectors.controls}, tree.wrap);

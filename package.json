@@ -1,11 +1,11 @@
 {
   "name": "jolly-carousel",
-  "version": "1.1.0",
-  "description": "Modern responsive carousel with zooming",
+  "version": "1.1.1",
+  "description": "Modern responsive infinite carousel with zooming",
   "main": "src/jolly.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gerrproger/jolly.git"
+    "url": "https://github.com/gerrproger/Jolly.git"
   },
   "keywords": [
     "modern",
@@ -13,11 +13,12 @@
     "carousel",
     "slider",
     "zoom",
+    "infinite",
     "js"
   ],
   "author": "Gerrproger <gerrproger@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gerrproger/jolly/issues"
+    "url": "https://github.com/gerrproger/Jolly/issues"
   }
 }
